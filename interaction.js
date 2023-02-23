@@ -16,30 +16,53 @@ class Dnd{
     this.move = this.move.bind(this);
     this.drop = this.drop.bind(this);
 
-  // Associer les fonctions précédentes aux évènements du canvas.
-   this.canvas.addEventListener("mousedown",this.drag)
-   this.canvas.addEventListener("mousemove",this.move)
-   this.canvas.addEventListener("mouseup",this.drop)
-  
+    // Associer les fonctions précédentes aux évènements du canvas.
+    this.canvas.addEventListener("mousedown",this.drag)
+    this.canvas.addEventListener("mousemove",this.move)
+    this.canvas.addEventListener("mouseup",this.drop)
 
+  }
+
+  getInitialX(){
+    console.log("on passe par ici");
+    return this.initialX;
+  }
+
+  getInitialY(){
+
+    return this.initialY;
+  }
+
+  getFinalX(){
+    return this.finalX;
+  }
+
+  getFinalY(){
+    return this.finalY;
   }
 
   // Developper les 3 fonctions gérant les événements
   // Drag function
   drag(evt){
+
     this.initialX = getMousePosition(canvas,evt).x;
     this.initialY = getMousePosition(canvas,evt).y;
     console.log("Drag: X:"+this.initialX+", Y"+this.initialY);
     this.isDragging = true;
+    this.interactor.onInteractionStart(this);
+
 
   };
   
   // Move function
   move(evt){
+
     if(this.isDragging){
       this.finalX = getMousePosition(canvas,evt).x;
       this.finalY = getMousePosition(canvas,evt).y;
       console.log("Move: X:"+this.finalX+", Y"+this.finalY);
+      this.interactor.onInteractionUpdate(this);
+
     }
     
 
@@ -47,12 +70,16 @@ class Dnd{
 
   // Drop function
   drop(evt){
+
+
     if(this.isDragging){
       
       this.finalX = getMousePosition(canvas,evt).x;
       this.finalY = getMousePosition(canvas,evt).y;
       this.isDragging = false;
       console.log("Drop: X:"+this.finalX+", Y"+this.finalY);
+      this.interactor.onInteractionEnd(this);
+
     }
   };
   

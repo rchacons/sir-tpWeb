@@ -6,8 +6,8 @@
 // Drawing class
 class Drawing{
     constructor(){
-        
-    }
+        this.forms = new Array();
+    };
 
     getForms(){
         return this.forms;
@@ -15,6 +15,10 @@ class Drawing{
 
     setForms(forms){
         this.forms=forms;
+    }
+
+    addForm(form){
+        this.forms.push(form);
     }
 
 
@@ -64,6 +68,14 @@ class Rectangle extends Form{
         return this.height;
     }
 
+    setWidth(width){
+        this.width=width;
+    }
+    
+    setHeight(height){
+        this.height=height;
+    }
+
 }
 
 // Line class (implements form)
@@ -90,5 +102,13 @@ class Line extends Form{
 
     getFinalY(){
         return this.finalY;
+    }
+
+    setFinalX(finalX){
+        this.finalX=finalX;
+    }
+
+    setFinalY(finalY){
+        this.finalY=finalY;
     }
 }

@@ -6,7 +6,7 @@ canvas.width=800
 canvas.height=600
 
 // Code temporaire pour tester le DnD
-new Dnd(canvas);
+//new Dnd(canvas);
 
 // Code temporaire pour tester l'affiche de la vue
 var rec = new Rectangle(10, 20, 50, 100, 5, '#79becf');
@@ -21,9 +21,10 @@ formArray.push(rec);
 formArray.push(ligne);
 
 var drawing = new Drawing();
-drawing.setForms(formArray);
-drawing.paint(ctx, canvas);
+//drawing.setForms(formArray);
+//drawing.paint(ctx, canvas);
 
 // Code final à utiliser pour manipuler Pencil.
-//var pencil = new Pencil(ctx, drawing, canvas);
+
+var pencil = new Pencil(ctx, drawing, canvas);
 
