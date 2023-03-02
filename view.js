@@ -6,7 +6,8 @@ Rectangle.prototype.paint = function(ctx) {
     ctx.lineWidth = this.getThickness();
 
     ctx.beginPath();
-    ctx.rect(this.getXCoord(), this.getYCoord(), this.getWidth(),   this.getHeight());
+    // we're calculating the relative width and height of the rectangle based on the difference between the coordinates of the top-left and bottom-right corners. instead of the absolute coordinates
+    ctx.rect(this.getInitialX(), this.getInitialY(), this.getFinalX()-this.getInitialX(),   this.getFinalY()-this.getInitialY());
     ctx.fillStyle = this.getColor();
     ctx.fill();
     ctx.stroke();
@@ -32,4 +33,5 @@ Drawing.prototype.paint = function(ctx) {
         arrayElement.paint(ctx);
     });
     ctx.fill();
+
 };

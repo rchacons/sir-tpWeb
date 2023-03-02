@@ -24,7 +24,6 @@ class Dnd{
   }
 
   getInitialX(){
-    console.log("on passe par ici");
     return this.initialX;
   }
 
@@ -47,6 +46,7 @@ class Dnd{
 
     this.initialX = getMousePosition(canvas,evt).x;
     this.initialY = getMousePosition(canvas,evt).y;
+    
     console.log("Drag: X:"+this.initialX+", Y"+this.initialY);
     this.isDragging = true;
     this.interactor.onInteractionStart(this);
@@ -78,9 +78,11 @@ class Dnd{
       this.finalY = getMousePosition(canvas,evt).y;
       this.isDragging = false;
       console.log("Drop: X:"+this.finalX+", Y"+this.finalY);
-      this.interactor.onInteractionEnd(this);
 
+      this.interactor.onInteractionEnd(this);
     }
+
+    
   };
   
 }

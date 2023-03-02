@@ -27,60 +27,58 @@ class Pencil{
 		this.currentShape = 0;
 			
 		new Dnd(canvas, this);
+		this.drawing.paint(ctx);
 		
 
 	}
 
 
+	checkCurrentEditingMode(){
+		if(document.getElementById('butRect').checked){
+			this.currEditingMode = editingMode.rect;
+		}
+		else{
+			this.currEditingMode = editingMode.line;
+		}
+	}
+
 	onInteractionStart(dnd){
 
+		this.checkCurrentEditingMode();
+
 		switch(this.currEditingMode){
+			
 			case editingMode.rect:{
 				this.currentShape = new Rectangle(dnd.getInitialX(),dnd.getInitialY(),dnd.getFinalX(), dnd.getFinalY(),
-					this.currLineWidth, this.currColour);
+				this.currLineWidth, this.currColour);
+				break;
 			}
 			case editingMode.line:{
-				this.currentShape = new Line(dnd.getInitialX(),dnd.getInitialY(),this.currLineWidth,this.currColour);
+				this.currentShape = new Line(dnd.getInitialX(),dnd.getInitialY(),dnd.getFinalX(), dnd.getFinalY(),
+				this.currLineWidth, this.currColour);
+				break;
 			}
 		}
 	}
 
 	onInteractionUpdate(dnd){
-		switch(this.currEditingMode){
-			case editingMode.rect:{
-				this.currentShape.setWidth=dnd.getFinalX()
-				this.currentShape.setHeight=dnd.getFinalY()
-			}
-			case editingMode.line:{
-			
-				this.currentShape.setFinalX(dnd.getFinalX())
-				this.currentShape.setFinalY(dnd.getFinalY())
-				
-			}
-		}
+		this.currentShape.finalX= dnd.getFinalX();
+		this.currentShape.finalY= dnd.getFinalY();
 		this.drawing.paint(ctx)
 		this.currentShape.paint(ctx)
 	}
 
 	onInteractionEnd(dnd){
+		console.log("Dnd: X: "+dnd.finalX+", Y: "+dnd.finalY);
 
-		switch(this.currEditingMode){
-			case editingMode.rect:{
-				this.currentShape.setWidth=dnd.getFinalX
-				this.currentShape.setHeight=dnd.getFinalY
-			}
-			case editingMode.line:{
-				this.currentShape.setFinalX=dnd.getFinalX
-				this.currentShape.setFinalY=dnd.getFinalY
-				
-			}
-		}
-		
-		this.drawing.paint(ctx)
-		this.currentShape.paint(ctx)
+		this.currentShape.finalX= dnd.getFinalX();
+		this.currentShape.finalY= dnd.getFinalY();		
 		this.drawing.addForm(this.currentShape)
+		this.drawing.paint(ctx)
 		
 	};
+
+	
 
 
 }
