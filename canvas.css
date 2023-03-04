@@ -5,17 +5,28 @@
 
 .cf:before,.cf:after{content:"";display:table}.cf:after{clear:both}.cf{zoom:1}
 
+.row {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 10px;
+}
+  
 .mx-button {
-    float: left;
+    display: inline-block;
+    position: relative;
+    margin: 0 5px;
+    font-size: 16px;
 }
 .mx-button input {
     display: none;
 }
 .mx-button label {
+    display: block;
     background: #ccc;
     border: 1px solid #888;
     color: #666;
-    padding: 5px 10px;
+    padding: 5px px;
 }
 .mx-button label:hover {
     background-color: #ddd;
@@ -31,7 +42,6 @@
 
 form {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    margin: 80px;
 }
 
 .mx-button label {
@@ -107,3 +117,11 @@ form {
   border-bottom-right-radius: 4px;
 }
 
+input[type="number"], input[type="color"] {
+    margin: 0 10px;
+    height: 30px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }

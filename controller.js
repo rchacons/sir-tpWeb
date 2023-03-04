@@ -33,22 +33,26 @@ class Pencil{
 	}
 
 
-	checkCurrentEditingMode(){
+	checkWidgets(){
 		if(document.getElementById('butRect').checked){
 			this.currEditingMode = editingMode.rect;
 		}
 		else{
 			this.currEditingMode = editingMode.line;
 		}
+
+		this.currLineWidth= document.getElementById('spinnerWidth').value;
+		this.currColour=document.getElementById('colour').value;
 	}
 
 	onInteractionStart(dnd){
 
-		this.checkCurrentEditingMode();
+		this.checkWidgets();
 
 		switch(this.currEditingMode){
 			
 			case editingMode.rect:{
+				console.log(this.currColour);
 				this.currentShape = new Rectangle(dnd.getInitialX(),dnd.getInitialY(),dnd.getFinalX(), dnd.getFinalY(),
 				this.currLineWidth, this.currColour);
 				break;
