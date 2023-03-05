@@ -1,20 +1,6 @@
 
 var editingMode = { rect: 0, line: 1 };
 
-// function Pencil(ctx, drawing, canvas) {
-// 	this.currEditingMode = editingMode.line;
-// 	this.currLineWidth = 5;
-// 	this.currColour = '#000000';
-// 	this.currentShape = 0;
-
-// 	// Liez ici les widgets à la classe pour modifier les attributs présents ci-dessus.
-
-// 	new DnD(canvas, this);
-
-// 	// Implémentez ici les 3 fonctions onInteractionStart, onInteractionUpdate et onInteractionEnd
-// };
-
-
 class Pencil{
 	constructor(ctx, drawing, canvas){
 		this.ctx = ctx;
@@ -28,8 +14,8 @@ class Pencil{
 			
 		new Dnd(canvas, this);
 		this.drawing.paint(ctx);
-		
 
+		this.view = new View(this);
 	}
 
 
@@ -79,9 +65,20 @@ class Pencil{
 		this.currentShape.finalY= dnd.getFinalY();		
 		this.drawing.addForm(this.currentShape)
 		this.drawing.paint(ctx)
-		
+
+		this.view.updateShapeList(this.drawing.getForms());
+
+	
 	};
 
+
+	handleDelete(formIndex){
+		this.drawing.removeForm(formIndex);
+		this.view.updateShapeList(this.drawing.getForms());
+		this.drawing.paint(ctx)
+	}
+
+	
 	
 
 

@@ -21,6 +21,10 @@ class Drawing{
         this.forms.push(form);
     }
 
+    removeForm(index){
+        this.forms.splice(index,1);
+    }
+
 
 }
 
